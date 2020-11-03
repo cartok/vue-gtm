@@ -1,4 +1,4 @@
-import pluginConfig from "./config";
+import pluginConfig, { VueGtmUseOptions } from "./config";
 import { hasScript, loadScript, logDebug } from "./utils";
 
 const inBrowser: boolean = typeof window !== "undefined";
@@ -39,14 +39,16 @@ export default class VueGtmPlugin {
         this.id.forEach((id) => {
           loadScript(id, {
             defer: pluginConfig.defer,
+            compability: pluginConfig.compability,
             queryParams: pluginConfig.queryParams,
-          });
+          } as VueGtmUseOptions);
         });
       } else {
         loadScript(this.id, {
           defer: pluginConfig.defer,
+          compability: pluginConfig.compability,
           queryParams: pluginConfig.queryParams,
-        });
+        } as VueGtmUseOptions);
       }
     }
   }
